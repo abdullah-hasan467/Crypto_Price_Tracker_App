@@ -1,21 +1,32 @@
 import ListItems from "@/components/ListItems";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from "react-native";
 import {SAMPLE_DATA} from "../Data/sampleData"
 
 const Index = () => {
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.titleWrapper}>
-        <Text style={styles.titleText}>Market </Text>
-      </View>
-      <View style={styles.devider} />
-      <ListItems  name={SAMPLE_DATA[0].name}
-            symbol={SAMPLE_DATA[0].symbol}
-            currentPrice={SAMPLE_DATA[0].current_price}
-            priceChangePercentage7d={SAMPLE_DATA[0].price_change_percentage_7d_in_currency}
-            logoUrl={SAMPLE_DATA[0].image}  />
-    </View>
+<Text style={styles.titleText}> Markets</Text>
+  </View>
+  <View style={styles.devider}> </View>
+      <FlatList
+        keyExtractor={(item) => item.id}
+        data={SAMPLE_DATA}
+        renderItem={({ item }) => (
+          <ListItems
+            name={item.name}
+            symbol={item.symbol}
+            currentPrice={item.current_price}
+            priceChangePercentage7d={item.price_change_percentage_7d_in_currency}
+            logoUrl={item.image}
+            
+          />
+        )}
+       
+      />
+      </SafeAreaView>
   );
 };
 

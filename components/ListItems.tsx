@@ -17,8 +17,16 @@ const ListItems = ({ name, symbol, currentPrice, priceChangePercentage7d, logoUr
         </View>
 
         <View style={styles.rightWrapper}>
-          <Text style={styles.titleRight}>{currentPrice}</Text>
-          <Text style={styles.subTitleRight}>{priceChangePercentage7d}</Text>
+          <Text style={styles.titleRight}> {currentPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Text>
+          <Text
+  style={[
+    styles.subTitleRight,
+    { color: priceChangePercentage7d >= 0 ? 'green' : 'red' }
+  ]}
+>
+  {priceChangePercentage7d.toFixed(2)}%
+</Text>
+
         </View>
       </View>
     </TouchableOpacity>
